@@ -16,15 +16,12 @@ async def get_subs_count():
         count = await bot.get_chat_member_count(channel)  # aiogram v3 da to‘g‘ri metod
         total += count
     return total
-
-
 async def check_subs(user_id: int) -> bool:
     for channel in CHANNELS:
         chat_member = await bot.get_chat_member(chat_id=channel, user_id=user_id)
         if chat_member.status in ["left", "kicked"]:
             return False
     return True
-
 @dp.message(CommandStart())
 async def start_handler(message: types.Message):
     user_id = message.from_user.id
@@ -1927,4 +1924,5 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
 
